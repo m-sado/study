@@ -645,7 +645,6 @@ body {
     position: absolute;
     left: 0;
     top: 0;
-    opacity: 0;
     box-shadow: 2px 2px 30px 0px #0a0a0a; }
   .wrapper .slideshow .show {
     z-index: 1; }
