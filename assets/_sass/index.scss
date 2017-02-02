@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+@import "mixin";
+
+/* ALL =================================== */
+
+body{
+  background-color: #161616;
+  height: 100%;
+}
+
+.wrapper{
+  .slideshow {
+    width: 640px;
+    height: 480px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    img {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      box-shadow:2px 2px 30px 0px #0a0a0a;
+      //transition: 1s;
+    }
+    .show {
+      //opacity: 1;
+      z-index: 1;
+    }
+  }
+}
+
+
+/* PC =================================== */
+
+/* PC　ALL */
+@media #{$pc-all} {
+
+} // [ $pc-all END ]
+
+/* PC　サイズ別 */
+@media #{$pc-small} {
+} // [ $pc-small END ]
+
+/* SMP =================================== */
+
+@media #{$smp} {
+} // [ $smp END ]
+
+
