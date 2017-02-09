@@ -11,11 +11,11 @@ var device = {
 	"size":(750<w)?"pc":"sp",
 }
 
-var page = {
+var page =  {
 	$d : $("#document"),
   $s : $(".slideshow"),
   current:0,
-  MAX : 8,
+  MAX : 6,
   time:[],
 
 
@@ -25,42 +25,42 @@ var page = {
     //console.log("test");
     page.animation(page.current);
 
-
-    $(".slideshow").each(function (i) {
-        $(this).css({ left: 100 * i + '%' });
-        $('.slideshow-indicator').HTML += '<a href="#">' + (i + 1) + '</a>';
+    var indicatorHTML = "";
+    page.$s.find('img').each(function (i) {
+        indicatorHTML += '<a href="#">' + (i + 1) + '</a>';
     });
+    $('.slideshow-indicator').html(indicatorHTML);
 
-
-    // $("slideshow-nav a").on("click",function(){
-    //   console.log($(this).attr("id"));
-    //   if($(this).attr("id")=="next"){
-
-    //   }else{
-
-    //   }
-    // });
-
-    $(".slideshow-nav a").on('click', 'a', function (event) {
+    $(".slideshow-indicator").on('click', 'a', function (event) {
         event.preventDefault();
-        if ($(this).hasClass('prev')) {
-            $('.slideshow').children(currentIndex - 1);
-        } else {
-            $('.slideshow').children(currentIndex + 1);
+        if (!$(this).hasClass('active')) {
+          var number = $(this).index();
+              numberIndex = number+1;
+          // console.log(numberIndex);
+            // $('.slideshow').children(currentIndex - 1);
+            page.animation(numberIndex);
         }
     });
 
-    // $('.slideshow-nav a').on('click' , function(){
-    //     var idx = $(this).index();
-    //     $('.slideshow').children('gotoSlide' ,   $(this).index() );
-    //     console.log(idx);
-    //     return false;
-    // });
+
+    $(".arrow").on('click', function (event) {
+      // console.log('テスト');
+        event.preventDefault();
+        if ($(this).hasClass('prev')) {
+           // console.log('テスト');
+            //$('.slideshow').children(currentIndex - 1);
+            page.animation(page.current--);
+        } else {
+          // console.log('テスト2');
+            //$('.slideshow').children(currentIndex + 1);
+            page.animation(page.current++);
+        }
+    });
 
 	},
 
   animation:function(num){
-    //console.log("num",num);
+    console.log("num",num);
     //console.log(page);
     TweenMax.to(page.$s.children(), 1, {
       opacity: 0,
@@ -77,7 +77,7 @@ var page = {
             clearTimeout(page.time);
             page.time = setTimeout(function(){
               page.animation(page.current);
-            },10000);
+            },1000);
           }
         });
       }
@@ -85,7 +85,6 @@ var page = {
   }
 
 }
-
 
 $w.on("load",function(){
 	page.init();
