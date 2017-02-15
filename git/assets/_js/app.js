@@ -47,14 +47,19 @@ var page =  {
       // console.log('テスト');
         event.preventDefault();
         if ($(this).hasClass('prev')) {
-           // console.log('テスト');
-            //$('.slideshow').children(currentIndex - 1);
-            page.animation(page.current--);
+         // console.log('テスト');
+          page.animation(page.current--);
         } else {
           // console.log('テスト2');
-            //$('.slideshow').children(currentIndex + 1);
             page.animation(page.current++);
+          }
+
+        if (page.current >= page.MAX) {
+          page.current=0;
+        } else if (page.current <= 0) {
+          page.current=page.MAX;
         }
+
     });
 
 	},
