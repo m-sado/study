@@ -29,7 +29,6 @@ var page =  {
     // page.$s.find('img').each(function (i) {
     //     indicatorHTML += '<a href="#">' + (i + 1) + '</a>';
     // });
-
     for(var i=0; i < page.$s.find('img').length; i++){
       indicatorHTML += '<a href="#">' + (i + 1) + '</a>';
     }
@@ -38,11 +37,10 @@ var page =  {
 
     $(".slideshow-indicator").on('click', 'a', function (event) {
         event.preventDefault();
+        var target = $(this).siblings();
         if (!$(this).hasClass('active')) {
-          // var number = $(this).index();
-          //     numberIndex = number+1;
-          // console.log(numberIndex);
-            // $('.slideshow').children(currentIndex - 1);
+          $(target).removeClass("active");
+          $(this).addClass("active");
             page.current = $(this).index();
             page.animation("ctrl");
         }
@@ -51,7 +49,7 @@ var page =  {
 
     $(".arrow").on('click', function (event) {
       page.type="ctrl";
-      // console.log('テスト');
+       //console.log('テスト');
         event.preventDefault();
         if ($(this).hasClass('prev')) {
          // console.log('テスト');
@@ -117,7 +115,7 @@ var page =  {
               clearTimeout(page.time);
               page.time = setTimeout(function(){
                 page.animation(page.current);
-              },1000);
+              },4000);
             }
           }
         });
